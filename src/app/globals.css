@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --ink: #143f30;
+  --muted: #718078;
+  --paper: #f8f7f0;
+  --surface: #fffefa;
+  --line: #dfe2d4;
+  --lime: #cde49f;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); }
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 88% -8%, rgba(205, 228, 159, .28), transparent 30%),
+    var(--paper);
+}
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: var(--lime); color: var(--ink); }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.portal-rise { animation: rise .5s cubic-bezier(.2,.8,.2,1) both; }
+.portal-rise-delay { animation-delay: .1s; }
+
+@media (min-width: 1024px) {
+  .portal-main { margin-left: 272px; transition: margin-left .3s ease; }
+  .portal-header { left: 272px; transition: left .3s ease; }
+  .portal-shell:has([data-collapsed="true"]) .portal-main { margin-left: 84px; }
+  .portal-shell:has([data-collapsed="true"]) .portal-header { left: 84px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; }
+}

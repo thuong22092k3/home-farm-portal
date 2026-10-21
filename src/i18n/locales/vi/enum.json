@@ -1,0 +1,12 @@
+{
+  "TREE_STATUS": {
+    "AVAILABLE": "Còn trống",
+    "RENTED": "Đã thuê",
+    "HARVESTING": "Đang thu hoạch"
+  },
+  "RENTAL_STATUS": {
+    "PENDING": "Chờ xác nhận",
+    "ACTIVE": "Đang hiệu lực",
+    "COMPLETED": "Hoàn thành"
+  }
+}

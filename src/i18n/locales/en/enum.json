@@ -1,0 +1,12 @@
+{
+  "TREE_STATUS": {
+    "AVAILABLE": "Available",
+    "RENTED": "Rented",
+    "HARVESTING": "Harvesting"
+  },
+  "RENTAL_STATUS": {
+    "PENDING": "Pending",
+    "ACTIVE": "Active",
+    "COMPLETED": "Completed"
+  }
+}
