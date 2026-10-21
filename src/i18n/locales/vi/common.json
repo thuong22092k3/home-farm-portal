@@ -20,5 +20,70 @@
   "progress": "Tiến độ chăm sóc mùa vụ",
   "tasksDone": "12/19 công việc đã hoàn thành",
   "pageComingSoon": "Khu vực này đã sẵn sàng để kết nối dữ liệu.",
-  "backDashboard": "Về tổng quan"
+  "backDashboard": "Về tổng quan",
+  "action": {
+    "select": "Chọn",
+    "cancel": "Huỷ",
+    "confirm": "Xác nhận"
+  },
+  "label": {
+    "clear_selection": "Bỏ lựa chọn",
+    "no_data": "Chưa có dữ liệu",
+    "no_records_found": "Không tìm thấy bản ghi",
+    "start_date": "Ngày bắt đầu",
+    "end_date": "Ngày kết thúc",
+    "rows_per_page": "Số dòng",
+    "total_records": "Tổng {{count}} bản ghi"
+  },
+  "message": {
+    "delete": {
+      "title": "Xoá mục này?",
+      "content": "Thao tác này không thể hoàn tác."
+    },
+    "image_selection_failed": "Không thể chọn ảnh"
+  },
+  "app_uploader": {
+    "file": "Tệp",
+    "preview": "Xem trước",
+    "remove": "Xoá",
+    "max_files_error": "Tối đa {{count}} tệp",
+    "oversized_error": "{{count}} tệp vượt quá {{size}}",
+    "upload_area_label": "Khu vực tải tệp",
+    "drop_files_here": "Thả tệp tại đây",
+    "drag_drop_or_click": "Kéo thả hoặc bấm để chọn ảnh",
+    "any_file_type": "Mọi loại tệp",
+    "max_size": "Tối đa {{size}}",
+    "up_to_files": "Tối đa {{count}} tệp",
+    "selected_files": "Tệp đã chọn"
+  },
+  "file_preview": {
+    "failed_to_load_image": "Không tải được ảnh",
+    "image_alt": "Ảnh xem trước",
+    "pdf_unavailable": "Không thể xem PDF",
+    "download_to_view": "Tải xuống để xem",
+    "download_pdf": "Tải PDF",
+    "preview_unavailable": "Không thể xem trước",
+    "unsupported_file": "Chưa hỗ trợ {{type}}",
+    "download_file": "Tải tệp",
+    "preview_title": "Xem {{name}}",
+    "download": "Tải xuống",
+    "close": "Đóng",
+    "zoom_out": "Thu nhỏ",
+    "zoom_in": "Phóng to",
+    "rotate": "Xoay",
+    "reset": "Đặt lại",
+    "reset_view": "Đặt lại khung nhìn"
+  },
+  "theme": {
+    "light": "Sáng",
+    "dark": "Tối",
+    "system": "Hệ thống"
+  },
+  "form": {
+    "required": {
+      "default": "Trường này là bắt buộc",
+      "invalid_email": "Email không hợp lệ",
+      "min_one_item": "Chọn ít nhất một mục"
+    }
+  }
 }

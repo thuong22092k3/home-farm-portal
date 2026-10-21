@@ -6,10 +6,10 @@ import {
   Trees,
   type LucideIcon
 } from "lucide-react";
-import type { CommonMessages } from "@/i18n/resources";
+type NavigationLabelKey = "dashboard" | "trees" | "rentals" | "journal" | "reports";
 
 export type NavigationItem = {
-  labelKey: keyof CommonMessages;
+  labelKey: NavigationLabelKey;
   href: string;
   icon: LucideIcon;
 };

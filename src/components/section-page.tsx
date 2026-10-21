@@ -1,18 +1,16 @@
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
-import type { CommonMessages, Locale } from "@/i18n/resources";
+import type { CommonMessages } from "@/i18n/resources";
 
 export function SectionPage({
   title,
   description,
   icon: Icon,
-  locale,
   messages
 }: {
   title: string;
   description: string;
   icon: LucideIcon;
-  locale: Locale;
   messages: CommonMessages;
 }) {
   return (
@@ -30,7 +28,7 @@ export function SectionPage({
         <div>
           <div className="mx-auto h-16 w-px bg-[#cbd8c3]" />
           <p className="mt-5 max-w-md text-lg font-semibold text-[#52665c]">{messages.pageComingSoon}</p>
-          <Link href={`/${locale}/dashboard`} className="mt-6 inline-flex h-11 items-center rounded-xl bg-[#143f30] px-5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#205740]">
+          <Link href="/dashboard" className="mt-6 inline-flex h-11 items-center rounded-xl bg-[#143f30] px-5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#205740]">
             {messages.backDashboard}
           </Link>
         </div>

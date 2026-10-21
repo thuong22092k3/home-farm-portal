@@ -1,10 +1,70 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --font-sans: Arial, Helvetica, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) * .6);
+  --radius-md: calc(var(--radius) * .8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
 }
 
 :root {
+  --background: #f8f7f0;
+  --foreground: #143f30;
+  --card: #fffefa;
+  --card-foreground: #143f30;
+  --popover: #ffffff;
+  --popover-foreground: #143f30;
+  --primary: #143f30;
+  --primary-foreground: #fffefa;
+  --secondary: #f0f2eb;
+  --secondary-foreground: #143f30;
+  --muted: #f0f2eb;
+  --muted-foreground: #718078;
+  --accent: #edf4df;
+  --accent-foreground: #143f30;
+  --destructive: #c45445;
+  --border: #dfe2d4;
+  --input: #dfe2d4;
+  --ring: #91b579;
+  --chart-1: #286c4e;
+  --chart-2: #91b579;
+  --chart-3: #d3a24c;
+  --chart-4: #7f9663;
+  --chart-5: #d06d4f;
+  --status-success: #327153;
+  --status-success-foreground: #ffffff;
+  --status-warning: #d3a24c;
+  --status-error: #c45445;
+  --status-info: #4f8b89;
+  --radius: .75rem;
   --ink: #143f30;
   --muted: #718078;
   --paper: #f8f7f0;

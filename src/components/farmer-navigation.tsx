@@ -7,7 +7,6 @@ import {
   Bell,
   ChevronLeft,
   ChevronRight,
-  Languages,
   Leaf,
   LogOut,
   Menu,
@@ -16,19 +15,16 @@ import {
   X
 } from "lucide-react";
 import { farmerNavigation } from "@/data/navigation";
-import type { CommonMessages, Locale } from "@/i18n/resources";
+import type { CommonMessages } from "@/i18n/resources";
 
 type FarmerNavigationProps = {
-  locale: Locale;
   messages: CommonMessages;
 };
 
-export function FarmerNavigation({ locale, messages }: FarmerNavigationProps) {
+export function FarmerNavigation({ messages }: FarmerNavigationProps) {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const otherLocale = locale === "vi" ? "en" : "vi";
-  const localeHref = pathname.replace(`/${locale}`, `/${otherLocale}`);
 
   const navigation = (
     <aside
@@ -36,7 +32,7 @@ export function FarmerNavigation({ locale, messages }: FarmerNavigationProps) {
       className={`flex h-full flex-col bg-[#143f30] text-white transition-[width] duration-300 ${collapsed ? "w-[84px]" : "w-[272px]"}`}
     >
       <div className="flex h-20 items-center border-b border-white/10 px-5">
-        <Link href={`/${locale}/dashboard`} className="flex min-w-0 items-center gap-3">
+        <Link href="/dashboard" className="flex min-w-0 items-center gap-3">
           <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#cde49f] text-[#143f30]">
             <Leaf className="size-5 fill-current" />
           </span>
@@ -60,7 +56,7 @@ export function FarmerNavigation({ locale, messages }: FarmerNavigationProps) {
         )}
         <nav className="space-y-1.5">
           {farmerNavigation.map(({ labelKey, href, icon: Icon }) => {
-            const fullHref = `/${locale}${href}`;
+            const fullHref = href;
             const active = pathname === fullHref;
             return (
               <Link
@@ -79,15 +75,7 @@ export function FarmerNavigation({ locale, messages }: FarmerNavigationProps) {
       </div>
 
       <div className="border-t border-white/10 p-3">
-        <Link
-          href={localeHref}
-          className="flex h-10 items-center gap-3 rounded-xl px-3 text-sm font-semibold text-white/65 hover:bg-white/10 hover:text-white"
-          title={collapsed ? otherLocale.toUpperCase() : undefined}
-        >
-          <Languages className="size-5 shrink-0 text-[#cde49f]" />
-          {!collapsed && <span>{locale === "vi" ? "English" : "Tiếng Việt"}</span>}
-        </Link>
-        <div className="mt-2 flex items-center gap-3 rounded-xl bg-white/6 p-2">
+        <div className="flex items-center gap-3 rounded-xl bg-white/6 p-2">
           <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[#eadfc7] text-xs font-black text-[#745f38]">UH</span>
           {!collapsed && (
             <div className="min-w-0 flex-1">
