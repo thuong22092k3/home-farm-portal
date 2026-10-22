@@ -80,7 +80,10 @@ body {
   color: var(--ink);
   background:
     radial-gradient(circle at 88% -8%, rgba(205, 228, 159, .28), transparent 30%),
+    linear-gradient(rgba(20, 63, 48, .025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 63, 48, .025) 1px, transparent 1px),
     var(--paper);
+  background-size: auto, 32px 32px, 32px 32px, auto;
 }
 button, a { -webkit-tap-highlight-color: transparent; }
 ::selection { background: var(--lime); color: var(--ink); }
@@ -92,6 +95,16 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .portal-rise { animation: rise .5s cubic-bezier(.2,.8,.2,1) both; }
 .portal-rise-delay { animation-delay: .1s; }
+
+.live-dot { width: .5rem; height: .5rem; border-radius: 999px; background: #6e904d; box-shadow: 0 0 0 0 rgba(110,144,77,.45); animation: pulse-ring 2s infinite; }
+.stat-line:not(:last-child) { border-right: 1px solid rgba(23,60,47,.18); }
+.field-panel { box-shadow: 8px 8px 0 rgba(20,63,48,.11); }
+.progress-grow { transform-origin: left; animation: progress-in 1s .3s cubic-bezier(.2,.8,.2,1) both; }
+
+@keyframes pulse-ring { 70% { box-shadow: 0 0 0 8px rgba(110,144,77,0); } 100% { box-shadow: 0 0 0 0 rgba(110,144,77,0); } }
+@keyframes progress-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+@media (max-width: 639px) { .stat-line:not(:last-child) { border-right: 0; border-bottom: 1px solid rgba(23,60,47,.18); } }
 
 @media (min-width: 1024px) {
   .portal-main { margin-left: 272px; transition: margin-left .3s ease; }
