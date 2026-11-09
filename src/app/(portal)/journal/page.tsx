@@ -1,8 +1,3 @@
-import { CalendarDays } from "lucide-react";
-import { SectionPage } from "@/components/section-page";
-import { getMessages } from "@/i18n/resources";
-
-export default function JournalPage() {
-  const { common } = getMessages("vi");
-  return <SectionPage title={common.journal} description="Ghi lại công việc chăm sóc, hình ảnh và tiến độ mùa vụ." icon={CalendarDays} messages={common} />;
-}
+import { BookOpenCheck } from "lucide-react";
+import { FarmerOperationPage } from "@/components/farmer-operation-page";
+export default function JournalPage(){return <FarmerOperationPage icon={BookOpenCheck} eyebrow="Minh bạch canh tác" title="Nhật ký 1 chạm" description="Chọn lô, chụp ảnh hoặc nói để ghi. Bản nháp được giữ lại khi vườn mất mạng." action="Tạo nhật ký" actionHref="/journal/new" mode="journal" metrics={[{label:"Tuần này",value:"11",note:"Lượt cập nhật"},{label:"Đúng tần suất",value:"86%",note:"Mục tiêu ≥ 80%"},{label:"Chờ đồng bộ",value:"02",note:"Bản ghi ngoại tuyến",tone:"amber"},{label:"Khách đã xem",value:"173",note:"+24 hôm nay",tone:"blue"}]} items={[{title:"Tưới nước tự động · XO-A2",meta:"Hôm nay, 07:32 · 3 ảnh",status:"Đã gửi"},{title:"Bón phân vi sinh · SR-B1",meta:"Hôm qua, 16:10 · Đã chia sẻ",status:"Công khai"},{title:"Kiểm tra sâu bệnh · BC-C4",meta:"Nháp ngoại tuyến · Chưa có mạng",status:"Chờ sync"}]} featureTitle="Ghi một lần, khách hàng theo dõi cả mùa vụ" featureCopy="Ảnh, video, công việc và dữ liệu IoT được ghép thành timeline minh bạch cho từng khách nhận nuôi."/>}

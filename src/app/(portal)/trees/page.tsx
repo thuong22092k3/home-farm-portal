@@ -1,8 +1,3 @@
 import { Map as MapIcon } from "lucide-react";
-import { SectionPage } from "@/components/section-page";
-import { getMessages } from "@/i18n/resources";
-
-export default function TreesPage() {
-  const { common } = getMessages("vi");
-  return <SectionPage title={common.trees} description="Quản lý vị trí và trạng thái từng cây trong vườn." icon={MapIcon} messages={common} />;
-}
+import { FarmerOperationPage } from "@/components/farmer-operation-page";
+export default function TreesPage(){return <FarmerOperationPage icon={MapIcon} eyebrow="Vùng trồng" title="Cây và lô trồng" description="Theo dõi tình trạng nhận nuôi, giai đoạn sinh trưởng và sức khỏe của từng lô." action="Thêm cây mới" actionHref="/trees/new" metrics={[{label:"Tổng số cây",value:"248",note:"6 lô đang hoạt động"},{label:"Đã nhận nuôi",value:"186",note:"75% công suất",tone:"green"},{label:"Sẵn sàng",value:"42",note:"Có thể mở bán"},{label:"Cần kiểm tra",value:"03",note:"Cảnh báo sức khỏe",tone:"amber"}]} items={[{title:"Lô XO-A2 · Xoài Cát Hòa Lộc",meta:"68 cây · Ra hoa · 2 cảnh báo",status:"Đang chăm",href:"/trees/xo-a2"},{title:"Lô SR-B1 · Sầu riêng Ri6",meta:"42 cây · Nuôi trái · IoT ổn định",status:"Tốt",href:"/trees/sr-b1"},{title:"Lô BC-C4 · Bưởi da xanh",meta:"36 cây · Chuẩn bị thu hoạch",status:"12 ngày",href:"/harvest"}]} featureTitle="Bản đồ vườn giúp thấy ngay cây nào cần bạn" featureCopy="Mỗi lô gắn trạng thái nhận nuôi, nhật ký, cảm biến và lịch thu hoạch trong cùng một dòng dữ liệu." image="/images/lychee-orchard.jpg"/>}

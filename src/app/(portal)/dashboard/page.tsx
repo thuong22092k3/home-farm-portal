@@ -1,3 +1,5 @@
+import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, CloudSun, Droplets, Plus, Sprout, Wind } from "lucide-react";
 import { getMessages } from "@/i18n/resources";
 
@@ -10,14 +12,14 @@ export default function DashboardPage() {
     <div className="mx-auto max-w-[1380px]">
       <div className="portal-rise flex flex-col gap-6 border-b border-[#173c2f]/20 pb-7 md:flex-row md:items-end md:justify-between">
         <div>
-          <div className="mb-5 flex items-center gap-3 text-[10px] font-black uppercase tracking-[.24em] text-[#347858]"><span className="live-dot" /> Trạm vườn đang hoạt động <span className="text-[#173c2f]/35">/ 22.10.2026</span></div>
+          <div className="mb-5 flex items-center gap-3 text-[10px] font-black uppercase tracking-[.24em] text-[#347858]"><span className="live-dot" /> Trạm vườn đang hoạt động <span className="text-[#173c2f]/35">/ 09.11.2026</span></div>
           <p className="text-xs font-extrabold uppercase tracking-[.18em] text-[#347858]">{common.harvestSeason}</p>
           <h1 className="mt-2 max-w-3xl text-5xl font-black leading-[.9] tracking-[-.07em] sm:text-7xl">Vườn khỏe.<br/><span className="text-[#6e904d]">Việc đúng nhịp.</span></h1>
           <p className="mt-5 max-w-xl text-sm leading-6 text-[#617269]">{common.subtitle} Mọi tín hiệu quan trọng của khu vườn được gom về một nơi.</p>
         </div>
-        <button type="button" className="group inline-flex h-12 items-center justify-center gap-3 bg-[#143f30] px-6 text-sm font-bold text-white transition hover:-translate-y-1 hover:bg-[#205740] hover:shadow-[6px_6px_0_#cde49f]">
+        <Link href="/journal/new" className="group inline-flex h-12 items-center justify-center gap-3 rounded-lg bg-[#143f30] px-6 text-sm font-bold text-white transition hover:-translate-y-1 hover:bg-[#205740] hover:shadow-[6px_6px_0_#cde49f]">
           <Plus className="size-4 transition-transform group-hover:rotate-90" /> {common.addTree}
-        </button>
+        </Link>
       </div>
 
       <div className="portal-rise portal-rise-delay mt-8 grid border-y border-[#173c2f]/20 sm:grid-cols-2 xl:grid-cols-4">
@@ -30,13 +32,14 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      <section className="field-panel mt-8 grid overflow-hidden bg-[#ddebba] md:grid-cols-[1fr_380px]">
+      <section className="field-panel relative mt-8 grid overflow-hidden rounded-2xl bg-[#ddebba] md:grid-cols-[1fr_380px]">
+        <Image src="/images/orchard-farmer.jpg" alt="Nhà vườn kiểm tra cây" fill sizes="100vw" className="object-cover opacity-[.12]" />
         <div className="relative p-7 sm:p-10">
           <Sprout className="absolute -bottom-7 right-8 size-36 rotate-[-8deg] text-[#143f30]/8" strokeWidth={1} />
           <p className="text-[10px] font-black tracking-[.2em] text-[#347858]">DỰ BÁO THU HOẠCH / 06 TUẦN</p>
           <h2 className="mt-5 max-w-lg text-3xl font-black tracking-[-.04em] sm:text-4xl">{common.comingHarvest}</h2>
           <p className="mt-3 max-w-xl text-sm leading-6 text-[#52665c]">Cập nhật nhật ký chăm sóc hôm nay để khách thuê theo dõi đúng nhịp phát triển của cây.</p>
-          <button className="mt-8 inline-flex items-center gap-2 border-b border-[#143f30] pb-1 text-xs font-black uppercase tracking-[.12em]">Mở nhật ký <ArrowUpRight className="size-4" /></button>
+          <Link href="/journal" className="mt-8 inline-flex items-center gap-2 border-b border-[#143f30] pb-1 text-xs font-black uppercase tracking-[.12em]">Mở nhật ký <ArrowUpRight className="size-4" /></Link>
         </div>
         <div className="flex flex-col justify-between bg-[#143f30] p-7 text-white sm:p-10">
           <div className="flex items-start justify-between"><p className="text-7xl font-black tracking-[-.08em]">63<span className="text-2xl text-[#cde49f]">%</span></p><span className="rounded-full border border-white/20 px-3 py-1 text-[10px] font-bold tracking-wider">ĐÚNG TIẾN ĐỘ</span></div>
