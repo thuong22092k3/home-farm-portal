@@ -85,6 +85,15 @@ body {
     var(--paper);
   background-size: auto, 32px 32px, 32px 32px, auto;
 }
+
+.glass-tabs {
+  border: 1px solid rgba(255,255,255,.72);
+  background: rgba(239,244,237,.76);
+  box-shadow: 0 16px 45px rgba(19,63,48,.2), inset 0 1px 0 rgba(255,255,255,.8);
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  backdrop-filter: blur(22px) saturate(1.5);
+}
+.metric-cell:not(:last-child) { border-right: 1px solid rgba(24,63,49,.1); }
 button, a { -webkit-tap-highlight-color: transparent; }
 ::selection { background: var(--lime); color: var(--ink); }
 
@@ -105,6 +114,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @keyframes progress-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 @media (max-width: 639px) { .stat-line:not(:last-child) { border-right: 0; border-bottom: 1px solid rgba(23,60,47,.18); } }
+@media (max-width: 1279px) { .metric-cell:nth-child(2) { border-right: 0; } .metric-cell:nth-child(-n+2) { border-bottom: 1px solid rgba(24,63,49,.1); } }
+@media (max-width: 639px) { .metric-cell:not(:last-child) { border-right: 0; border-bottom: 1px solid rgba(24,63,49,.1); } }
 
 @media (min-width: 1024px) {
   .portal-main { margin-left: 272px; transition: margin-left .3s ease; }

@@ -1,8 +1,3 @@
-import { BarChart3 } from "lucide-react";
-import { SectionPage } from "@/components/section-page";
-import { getMessages } from "@/i18n/resources";
-
-export default function ReportsPage() {
-  const { common } = getMessages("vi");
-  return <SectionPage title={common.reports} description="Tổng hợp sản lượng, doanh thu và hiệu quả vận hành." icon={BarChart3} messages={common} />;
-}
+import { ChartNoAxesCombined } from "lucide-react";
+import { FarmerOperationPage } from "@/components/farmer-operation-page";
+export default function ReportsPage(){return <FarmerOperationPage icon={ChartNoAxesCombined} eyebrow="Hiệu quả vận hành" title="Báo cáo mùa vụ" description="Đối chiếu sản lượng, doanh thu, tần suất nhật ký và tiến độ giao hàng theo lô." metrics={[{label:"Sản lượng thực tế",value:"1,06 tấn",note:"90% dự báo"},{label:"Doanh thu",value:"286 tr",note:"+12% vụ trước",tone:"green"},{label:"Nhật ký đúng hạn",value:"86%",note:"Mục tiêu ≥ 80%",tone:"blue"},{label:"Giao đúng hẹn",value:"96,4%",note:"2 đơn trễ"}]} items={[{title:"Báo cáo sản lượng theo lô",meta:"Cập nhật 09/11/2026 · PDF/XLSX",status:"Sẵn sàng"},{title:"Đối soát đơn nhận nuôi",meta:"186 gói đang hoạt động",status:"Tháng 11"},{title:"Hiệu suất nhật ký nông hộ",meta:"11 cập nhật · 173 lượt xem",status:"86%"}]} featureTitle="Dự báo để hành động, báo cáo để cải thiện" featureCopy="Kết hợp lịch sử mùa vụ, IoT và tiến độ thực tế để phát hiện sớm chênh lệch sản lượng và rủi ro giao hàng."/>}
