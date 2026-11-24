@@ -9,6 +9,15 @@ import {
   LayoutDashboard,
   Map as MapIcon,
   PackageCheck,
+  BadgeCheck,
+  Building2,
+  Headphones,
+  ListChecks,
+  Settings2,
+  ShieldCheck,
+  UsersRound,
+  BadgeDollarSign,
+  Layers3,
   type LucideIcon
 } from "lucide-react";
 
@@ -47,4 +56,30 @@ export const farmerNavigation: NavigationItem[] = [
 
 export const bottomNavigation = farmerNavigation.filter((item) =>
   ["dashboard", "orders", "journal", "harvest", "wallet"].includes(item.labelKey)
+);
+
+export type AdminNavigationItem = {
+  label: string;
+  href: string;
+  icon: LucideIcon;
+  group: "operate" | "control" | "system";
+};
+
+export const adminNavigation: AdminNavigationItem[] = [
+  { label: "Tổng quan", href: "/admin", icon: LayoutDashboard, group: "operate" },
+  { label: "Người dùng", href: "/admin/users", icon: UsersRound, group: "operate" },
+  { label: "Nhà vườn & HTX", href: "/admin/partners", icon: Building2, group: "operate" },
+  { label: "Hàng chờ phê duyệt", href: "/admin/approvals", icon: BadgeCheck, group: "control" },
+  { label: "Đơn hàng", href: "/admin/orders", icon: ListChecks, group: "control" },
+  { label: "Gói subscription", href: "/admin/subscriptions", icon: Layers3, group: "control" },
+  { label: "QA/QC & tuân thủ", href: "/admin/compliance", icon: ShieldCheck, group: "control" },
+  { label: "Tài chính", href: "/admin/finance", icon: CircleDollarSign, group: "control" },
+  { label: "Doanh thu & quảng cáo", href: "/admin/revenue", icon: BadgeDollarSign, group: "control" },
+  { label: "Hỗ trợ", href: "/admin/support", icon: Headphones, group: "system" },
+  { label: "Báo cáo hệ thống", href: "/admin/analytics", icon: BarChart3, group: "system" },
+  { label: "Cấu hình", href: "/admin/settings", icon: Settings2, group: "system" }
+];
+
+export const adminBottomNavigation = adminNavigation.filter((item) =>
+  ["/admin", "/admin/partners", "/admin/approvals", "/admin/finance"].includes(item.href)
 );

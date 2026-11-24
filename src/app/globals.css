@@ -122,6 +122,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .portal-header { left: 272px; transition: left .3s ease; }
   .portal-shell:has([data-collapsed="true"]) .portal-main { margin-left: 84px; }
   .portal-shell:has([data-collapsed="true"]) .portal-header { left: 84px; }
+  .admin-main { margin-left: 272px; transition: margin-left .3s ease; }
+  .admin-header { left: 272px; transition: left .3s ease; }
+  .admin-shell:has([data-admin-collapsed="true"]) .admin-main { margin-left: 84px; }
+  .admin-shell:has([data-admin-collapsed="true"]) .admin-header { left: 84px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
