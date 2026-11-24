@@ -9,9 +9,10 @@ import {
   ChevronRight,
   LogOut,
   Menu,
+  Repeat2,
   Settings,
   UserRound,
-  X
+  X,
 } from "lucide-react";
 import Image from "next/image";
 import { farmerNavigation } from "@/data/navigation";
@@ -34,9 +35,19 @@ export function FarmerNavigation({ messages }: FarmerNavigationProps) {
       <div className="flex h-20 items-center border-b border-white/10 px-5">
         <Link href="/dashboard" className="flex min-w-0 items-center gap-3">
           <span className="grid size-10 shrink-0 place-items-center overflow-hidden rounded-lg bg-white">
-            <Image src="/avt.png" width={40} height={40} alt="Trang Trại Tại Nhà" className="size-full object-cover" />
+            <Image
+              src="/avt.png"
+              width={40}
+              height={40}
+              alt="Trang Trại Tại Nhà"
+              className="size-full object-cover"
+            />
           </span>
-          {!collapsed && <span className="truncate text-lg font-black tracking-[-.04em]">Trang Trại Tại Nhà</span>}
+          {!collapsed && (
+            <span className="truncate text-lg font-black tracking-[-.04em]">
+              Trang Trại Tại Nhà
+            </span>
+          )}
         </Link>
         <button
           type="button"
@@ -57,7 +68,8 @@ export function FarmerNavigation({ messages }: FarmerNavigationProps) {
         <nav className="space-y-1.5">
           {farmerNavigation.map(({ label, href, icon: Icon }) => {
             const fullHref = href;
-            const active = pathname === fullHref || pathname.startsWith(`${fullHref}/`);
+            const active =
+              pathname === fullHref || pathname.startsWith(`${fullHref}/`);
             return (
               <Link
                 key={href}
@@ -75,12 +87,25 @@ export function FarmerNavigation({ messages }: FarmerNavigationProps) {
       </div>
 
       <div className="border-t border-white/10 p-3">
+        <Link
+          href="/roles"
+          className="mb-2 flex h-10 items-center gap-3 rounded-lg px-3 text-sm font-semibold text-white/65 hover:bg-white/8 hover:text-white"
+        >
+          <Repeat2 className="size-[18px] text-[#cde49f]" />
+          {!collapsed && "Chuyển vai trò"}
+        </Link>
         <div className="flex items-center gap-3 rounded-lg bg-white/6 p-2">
-          <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[#eadfc7] text-xs font-black text-[#745f38]">UH</span>
+          <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[#eadfc7] text-xs font-black text-[#745f38]">
+            UH
+          </span>
           {!collapsed && (
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-bold">{messages.farmerName}</p>
-              <p className="truncate text-[11px] text-white/48">{messages.farmerRole}</p>
+              <p className="truncate text-sm font-bold">
+                {messages.farmerName}
+              </p>
+              <p className="truncate text-[11px] text-white/48">
+                {messages.farmerRole}
+              </p>
             </div>
           )}
         </div>
@@ -89,9 +114,14 @@ export function FarmerNavigation({ messages }: FarmerNavigationProps) {
             {[
               [UserRound, messages.profile],
               [Settings, messages.settings],
-              [LogOut, messages.logout]
+              [LogOut, messages.logout],
             ].map(([Icon, label]) => (
-              <button key={label as string} type="button" className="grid h-9 place-items-center rounded-lg text-white/50 hover:bg-white/10 hover:text-white" title={label as string}>
+              <button
+                key={label as string}
+                type="button"
+                className="grid h-9 place-items-center rounded-lg text-white/50 hover:bg-white/10 hover:text-white"
+                title={label as string}
+              >
                 <Icon className="size-4" />
               </button>
             ))}
@@ -104,26 +134,48 @@ export function FarmerNavigation({ messages }: FarmerNavigationProps) {
         className="absolute -right-3 top-24 hidden size-7 place-items-center rounded-full border border-[#315a49] bg-[#143f30] text-white shadow-md lg:grid"
         aria-label={collapsed ? "Expand navigation" : "Collapse navigation"}
       >
-        {collapsed ? <ChevronRight className="size-4" /> : <ChevronLeft className="size-4" />}
+        {collapsed ? (
+          <ChevronRight className="size-4" />
+        ) : (
+          <ChevronLeft className="size-4" />
+        )}
       </button>
     </aside>
   );
 
   return (
     <>
-      <div className="fixed inset-y-0 left-0 z-40 hidden lg:block">{navigation}</div>
+      <div className="fixed inset-y-0 left-0 z-40 hidden lg:block">
+        {navigation}
+      </div>
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <button type="button" className="absolute inset-0 bg-[#0b241b]/55 backdrop-blur-sm" onClick={() => setMobileOpen(false)} aria-label="Close navigation" />
+          <button
+            type="button"
+            className="absolute inset-0 bg-[#0b241b]/55 backdrop-blur-sm"
+            onClick={() => setMobileOpen(false)}
+            aria-label="Close navigation"
+          />
           <div className="relative h-full w-[272px]">{navigation}</div>
         </div>
       )}
       <div className="portal-header fixed left-0 right-0 top-0 z-30 flex h-16 items-center border-b border-[#dfe2d4] bg-[#fffefa]/94 px-4 backdrop-blur">
-        <button type="button" onClick={() => setMobileOpen(true)} className="grid size-10 place-items-center rounded-lg text-[#143f30] hover:bg-[#edf1e5] lg:hidden" aria-label="Open navigation">
+        <button
+          type="button"
+          onClick={() => setMobileOpen(true)}
+          className="grid size-10 place-items-center rounded-lg text-[#143f30] hover:bg-[#edf1e5] lg:hidden"
+          aria-label="Open navigation"
+        >
           <Menu className="size-5" />
         </button>
-        <p className="ml-2 text-sm font-semibold text-[#52665c] lg:ml-5">{messages.workspace}</p>
-        <button type="button" className="ml-auto grid size-10 place-items-center rounded-lg text-[#718078] hover:bg-[#edf1e5]" aria-label="Notifications">
+        <p className="ml-2 text-sm font-semibold text-[#52665c] lg:ml-5">
+          {messages.workspace}
+        </p>
+        <button
+          type="button"
+          className="ml-auto grid size-10 place-items-center rounded-lg text-[#718078] hover:bg-[#edf1e5]"
+          aria-label="Notifications"
+        >
           <Bell className="size-5" />
         </button>
       </div>
