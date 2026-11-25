@@ -1,12 +1,24 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, CloudSun, Droplets, Plus, Sprout, Wind } from "lucide-react";
 import { getMessages } from "@/i18n/resources";
+import { ApiStatus } from "@/components/api-status";
+import { useFarmerDashboardQuery } from "@/data/api/farmer-dashboard/farmer-dashboard.hooks";
+import { apiNumber, formatMoney, text } from "@/data/api/api.utils";
+
+
+
 
 export default function DashboardPage() {
   const { common } = getMessages("vi");
-  const stats = [["Tổng số cây", "24", "18 đang cho trái", "+03"], ["Cây đã thuê", "16", "8 cây còn sẵn sàng", "67%"], ["Sản lượng dự kiến", "1,2 tấn", "Ước tính vụ hiện tại", "+8%"], ["Doanh thu dự kiến", "48,5 tr", "Trước chi phí vận hành", "+12%"]];
-  const tasks = [["Tưới khu A", "07:30", "Đã xong"], ["Kiểm tra sâu bệnh SR-07", "09:00", "Đang làm"], ["Cập nhật ảnh cây thuê", "14:00", "Sắp tới"]];
+  const api = useFarmerDashboardQuery();
+  const data = api.data;
+  const metrics = data?.metrics ?? {};
+  const stats = api.isSuccess ? [["Tổng số lô", text(metrics.totalPlots,"0"), `${text(metrics.availablePlots,"0")} đang sẵn sàng`, text(metrics.farms,"0")+" vườn"], ["Đã nhận nuôi", text(metrics.adoptedPlots,"0"), `${text(metrics.activeOrders,"0")} đơn hoạt động`, text(metrics.pendingOrders,"0")+" chờ"], ["Sắp thu hoạch", text(data?.upcomingHarvests?.length,"0"), "Theo lịch vùng trồng", "API"], ["Doanh thu dự kiến", formatMoney(metrics.expectedRevenue), "Đơn chưa hủy/hoàn", "Live"]] : [["Tổng số cây", "24", "18 đang cho trái", "+03"], ["Cây đã thuê", "16", "8 cây còn sẵn sàng", "67%"], ["Sản lượng dự kiến", "1,2 tấn", "Ước tính vụ hiện tại", "+8%"], ["Doanh thu dự kiến", "48,5 tr", "Trước chi phí vận hành", "+12%"]];
+  const tasks = api.isSuccess ? (data?.tasks ?? []).map((item,index)=>[text(item.type,"Công việc vườn"),`#${index+1}`,text(item.priority,"Cần xử lý")]) : [["Tưới khu A", "07:30", "Đã xong"], ["Kiểm tra sâu bệnh SR-07", "09:00", "Đang làm"], ["Cập nhật ảnh cây thuê", "14:00", "Sắp tới"]];
+  const reading = data?.latestReading;
 
   return (
     <div className="mx-auto max-w-[1380px]">
@@ -16,6 +28,7 @@ export default function DashboardPage() {
           <p className="text-xs font-extrabold uppercase tracking-[.18em] text-[#347858]">{common.harvestSeason}</p>
           <h1 className="mt-2 max-w-3xl text-5xl font-black leading-[.9] tracking-[-.07em] sm:text-7xl">Vườn khỏe.<br/><span className="text-[#6e904d]">Việc đúng nhịp.</span></h1>
           <p className="mt-5 max-w-xl text-sm leading-6 text-[#617269]">{common.subtitle} Mọi tín hiệu quan trọng của khu vườn được gom về một nơi.</p>
+          <ApiStatus connected={api.isSuccess} error={api.error instanceof Error?api.error.message:api.error?"Không thể kết nối API":undefined} />
         </div>
         <Link href="/journal/new" className="group inline-flex h-12 items-center justify-center gap-3 rounded-lg bg-[#143f30] px-6 text-sm font-bold text-white transition hover:-translate-y-1 hover:bg-[#205740] hover:shadow-[6px_6px_0_#cde49f]">
           <Plus className="size-4 transition-transform group-hover:rotate-90" /> {common.addTree}
@@ -67,9 +80,9 @@ export default function DashboardPage() {
         <div className="relative overflow-hidden border border-[#173c2f]/20 bg-[#fffefa] p-7">
           <div className="absolute right-5 top-5 flex gap-1"><span className="size-1.5 rounded-full bg-[#143f30]"/><span className="size-1.5 rounded-full bg-[#143f30]/25"/><span className="size-1.5 rounded-full bg-[#143f30]/25"/></div>
           <p className="text-[10px] font-black tracking-[.2em] text-[#347858]">VI KHÍ HẬU / TRỰC TIẾP</p>
-          <div className="mt-6 flex items-center gap-5"><CloudSun className="size-14 text-[#d3a24c]" strokeWidth={1.5}/><div><p className="text-6xl font-black tracking-[-.07em]">29°</p><p className="text-xs text-[#718078]">Nắng nhẹ · khu A</p></div></div>
+          <div className="mt-6 flex items-center gap-5"><CloudSun className="size-14 text-[#d3a24c]" strokeWidth={1.5}/><div><p className="text-6xl font-black tracking-[-.07em]">{reading ? `${apiNumber(reading.temperature)}°` : "—°"}</p><p className="text-xs text-[#718078]">Dữ liệu cảm biến gần nhất</p></div></div>
           <div className="mt-8 grid grid-cols-2 border-t border-[#173c2f]/15 pt-5 text-sm">
-            <div className="flex items-center gap-3 border-r border-[#173c2f]/15"><Droplets className="size-4 text-[#347858]"/><div><p className="text-[10px] text-[#718078]">Độ ẩm</p><p className="font-black">78%</p></div></div>
+            <div className="flex items-center gap-3 border-r border-[#173c2f]/15"><Droplets className="size-4 text-[#347858]"/><div><p className="text-[10px] text-[#718078]">Độ ẩm</p><p className="font-black">{reading ? `${apiNumber(reading.soilMoisture)}%` : "—"}</p></div></div>
             <div className="flex items-center gap-3 pl-5"><Wind className="size-4 text-[#347858]"/><div><p className="text-[10px] text-[#718078]">Gió</p><p className="font-black">8 km/h</p></div></div>
           </div>
         </div>
