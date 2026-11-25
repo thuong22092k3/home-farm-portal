@@ -1,0 +1,28 @@
+export const ENDPOINTS = {
+  ADMIN: {
+    ANALYTICS: "admin/analytics",
+    SUBSCRIPTIONS: "admin/subscriptions",
+    COMPLIANCE: "admin/compliance",
+    DASHBOARD: "admin/dashboard",
+    PARTNERS: "admin/partners",
+    SETTINGS: "admin/settings",
+    SUPPORT: "admin/support",
+    APPROVALS: "admin/approvals",
+    REVENUE: "admin/revenue",
+    ORDERS: "admin/orders",
+    USERS: "admin/users",
+    FINANCE: "admin/finance",
+  },
+  FARMER: {
+    REPORTS: "farmer/reports",
+    ORDERS: "farmer/orders",
+    HARVESTS: "farmer/harvests",
+    IOT: "farmer/iot",
+    WALLET: "farmer/wallet",
+    JOURNAL: "farmer/journal",
+    LIVESTREAMS: "farmer/livestreams",
+    PLOTS: "farmer/plots",
+    AI: "farmer/ai",
+    DASHBOARD: "farmer/dashboard",
+  },
+} as const;
