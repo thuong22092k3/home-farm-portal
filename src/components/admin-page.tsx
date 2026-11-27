@@ -5,7 +5,7 @@ import type { LucideIcon } from "lucide-react";
 import { ArrowRight, ChevronRight, Clock3, Filter, Search } from "lucide-react";
 import { ApiStatus } from "@/components/api-status";
 import type { UseQueryResult } from "@tanstack/react-query";
-import { apiEntities, apiNumber, formatMoney, text } from "@/data/api/api.utils";
+import { unwrapPortalList, apiEntities, apiNumber, formatMoney, text } from "@/data/api/api.utils";
 import type { ApiEntity } from "@/data/api/types/base.type";
 
 export type AdminMetric = { label: string; value: string; change: string; tone?: "green" | "amber" | "red" | "blue" };
@@ -46,9 +46,9 @@ function liveRecords(data: unknown): AdminRecord[] {
 
 export function AdminPage({ endpoint, query, icon:Icon, eyebrow, title, description, metrics, records, sectionTitle, action="Tạo mới", actionHref, children }:{ endpoint:string; query:UseQueryResult<unknown>; icon:LucideIcon; eyebrow:string; title:string; description:string; metrics:AdminMetric[]; records:AdminRecord[]; sectionTitle:string; action?:string; actionHref?:string; children?:React.ReactNode }) {
 
-  const values = query.isSuccess ? liveMetricValues(endpoint,query.data) : [];
+  const values = query.isSuccess ? liveMetricValues(endpoint,unwrapPortalList(query.data)) : [];
   const visibleMetrics = metrics.map((metric,index)=>values[index]===undefined ? metric : {...metric,value:values[index]});
-  const visibleRecords = query.isSuccess ? liveRecords(query.data) : records;
+  const visibleRecords = query.isSuccess ? liveRecords(unwrapPortalList(query.data)) : records;
   return <div className="mx-auto max-w-[1440px]">
     <header className="portal-rise flex flex-col gap-5 border-b border-[#183f31]/15 pb-6 sm:flex-row sm:items-end sm:justify-between"><div className="max-w-3xl"><div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[.2em] text-[#4a7a5e]"><Icon className="size-4" />{eyebrow}</div><h1 className="mt-3 text-4xl font-black leading-[.95] tracking-[-.055em] sm:text-5xl">{title}</h1><p className="mt-3 max-w-2xl text-sm leading-6 text-[#65766d]">{description}</p><ApiStatus connected={query.isSuccess} error={query.error instanceof Error?query.error.message:query.error?"Không thể kết nối API":undefined}/></div>{actionHref&&<Link href={actionHref} className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#153f30] px-5 text-sm font-bold text-white shadow-[0_6px_20px_rgba(20,63,48,.14)] transition hover:-translate-y-0.5 hover:bg-[#245b43]">{action}<ArrowRight className="size-4"/></Link>}</header>
     <section className="portal-rise portal-rise-delay mt-6 grid overflow-hidden rounded-xl border border-[#183f31]/12 bg-white/70 sm:grid-cols-2 xl:grid-cols-4">{visibleMetrics.map(metric=><div key={metric.label} className="metric-cell p-5"><p className="text-[10px] font-black uppercase tracking-[.14em] text-[#748279]">{metric.label}</p><div className="mt-3 flex items-end justify-between gap-3"><p className="text-3xl font-black tracking-[-.05em] text-[#174b37]">{metric.value}</p><span className={`mb-1 rounded-full px-2 py-1 text-[9px] font-black ${toneClasses[metric.tone??"green"]}`}>{metric.change}</span></div></div>)}</section>
