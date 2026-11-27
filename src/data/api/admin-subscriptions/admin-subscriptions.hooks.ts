@@ -1,13 +1,16 @@
 "use client";
 
+import type { BasePaginationRequest } from "../types/base.type";
+
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/lib/constants/query-keys.constant";
 import { createSubscriptionAPI, getAdminSubscriptionsAPI } from "./admin-subscriptions.api";
 
-export function useAdminSubscriptionsQuery() {
+export function useAdminSubscriptionsQuery(params: Partial<BasePaginationRequest<object>> = {}) {
+  const request = { ...params, page: params.page ?? 1, size: params.size ?? 20 };
   return useQuery({
-    queryKey: [...QUERY_KEYS.ADMIN.SUBSCRIPTIONS],
-    queryFn: ({ signal }) => getAdminSubscriptionsAPI(signal),
+    queryKey: [...QUERY_KEYS.ADMIN.SUBSCRIPTIONS, request],
+    queryFn: ({ signal }) => getAdminSubscriptionsAPI(request, signal),
   });
 }
 

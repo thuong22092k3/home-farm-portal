@@ -1,5 +1,13 @@
 import type { ApiEntity } from "@/data/api/types/base.type";
 
+export function unwrapPortalList(value: unknown): unknown {
+  if (value && typeof value === "object" && "success" in value &&
+      "data" in value && "totalItems" in value && Array.isArray(value.data)) {
+    return value.data;
+  }
+  return value;
+}
+
 export function apiEntities(value:unknown):ApiEntity[]{
   if(Array.isArray(value)) return value.filter((item):item is ApiEntity=>Boolean(item)&&typeof item==="object");
   if(!value||typeof value!=="object") return [];

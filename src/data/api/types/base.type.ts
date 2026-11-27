@@ -10,7 +10,7 @@ export interface BaseResponse<T> {
   extra?: string;
 }
 
-export interface PaginatedResponse<T> extends BaseResponse<T> {
+export interface BasePaginationResponse<T> extends BaseResponse<T> {
   page: number;
   size: number;
   totalItems: number;
